@@ -1,0 +1,375 @@
+/* Fisibul Internship Admin Styles */
+.fisibul-stats {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.stat-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    text-align: center;
+    min-width: 150px;
+    flex: 1;
+}
+
+.stat-box h3 {
+    font-size: 32px;
+    margin: 0 0 10px 0;
+    color: #23282d;
+}
+
+.stat-box p {
+    margin: 0;
+    color: #666;
+    font-weight: 500;
+}
+
+.stat-box:nth-child(1) h3 { color: #0073aa; }
+.stat-box:nth-child(2) h3 { color: #dba617; }
+.stat-box:nth-child(3) h3 { color: #00a32a; }
+.stat-box:nth-child(4) h3 { color: #d63638; }
+
+.status-pending {
+    background: #fff3cd;
+    color: #856404;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-approved {
+    background: #d4edda;
+    color: #155724;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status-rejected {
+    background: #f8d7da;
+    color: #721c24;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* Modal Styles */
+#application-modal {
+    position: fixed;
+    z-index: 999999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.modal-header {
+    padding: 20px;
+    background: #f1f1f1;
+    border-bottom: 1px solid #ddd;
+    border-radius: 8px 8px 0 0;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: #23282d;
+}
+
+.close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+#modal-body {
+    padding: 20px;
+}
+
+.application-detail {
+    margin-bottom: 30px;
+}
+
+.application-detail h3 {
+    color: #23282d;
+    border-bottom: 2px solid #0073aa;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.detail-row {
+    display: flex;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #f1f1f1;
+    padding-bottom: 8px;
+}
+
+.detail-label {
+    font-weight: 600;
+    min-width: 200px;
+    color: #666;
+}
+
+.detail-value {
+    flex: 1;
+    color: #23282d;
+}
+
+/* Export Page Styles */
+.export-options {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.export-options h3 {
+    margin-top: 0;
+    color: #23282d;
+    border-bottom: 2px solid #0073aa;
+    padding-bottom: 10px;
+}
+
+.export-info {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.export-info h3 {
+    margin-top: 0;
+    color: #23282d;
+}
+
+.export-info ul {
+    margin: 15px 0;
+    padding-left: 20px;
+}
+
+.export-info li {
+    margin-bottom: 5px;
+    color: #666;
+}
+
+/* Table Enhancements */
+.wp-list-table th {
+    background: #f1f1f1;
+    font-weight: 600;
+}
+
+.wp-list-table td {
+    vertical-align: middle;
+}
+
+.wp-list-table .button {
+    margin-right: 5px;
+}
+
+.wp-list-table select {
+    margin-right: 5px;
+    font-size: 12px;
+}
+
+.wp-list-table .button-small {
+    font-size: 11px;
+    padding: 2px 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .fisibul-stats {
+        justify-content: center;
+    }
+    
+    .stat-box {
+        min-width: 120px;
+    }
+}
+
+@media (max-width: 768px) {
+    .fisibul-stats {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .stat-box {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+    }
+    
+    .detail-row {
+        flex-direction: column;
+    }
+    
+    .detail-label {
+        min-width: auto;
+        margin-bottom: 5px;
+    }
+    
+    .wp-list-table {
+        font-size: 12px;
+    }
+    
+    .wp-list-table th,
+    .wp-list-table td {
+        padding: 6px 4px;
+    }
+}
+
+/* Loading States */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+}
+
+.loading-spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #0073aa;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Form Styles in Admin */
+.form-table th {
+    width: 150px;
+    font-weight: 600;
+}
+
+.form-table td input,
+.form-table td select {
+    width: 300px;
+}
+
+/* Notification Styles */
+.notice.fisibul-notice {
+    border-left-color: #0073aa;
+}
+
+.notice.fisibul-notice.notice-success {
+    border-left-color: #46b450;
+}
+
+.notice.fisibul-notice.notice-error {
+    border-left-color: #dc3232;
+}
+
+/* Dashboard Widget Styles */
+.fisibul-dashboard-widget {
+    padding: 12px;
+}
+
+.fisibul-dashboard-widget .inside {
+    margin: 0;
+    padding: 0;
+}
+
+.widget-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.widget-stat {
+    text-align: center;
+    flex: 1;
+}
+
+.widget-stat .number {
+    font-size: 24px;
+    font-weight: 600;
+    color: #0073aa;
+    display: block;
+}
+
+.widget-stat .label {
+    font-size: 12px;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.recent-applications {
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.recent-application {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.recent-application:last-child {
+    border-bottom: none;
+}
+
+.applicant-name {
+    font-weight: 600;
+    color: #23282d;
+}
+
+.application-track {
+    font-size: 12px;
+    color: #666;
+}
+
+.application-date {
+    font-size: 11px;
+    color: #999;
+}
