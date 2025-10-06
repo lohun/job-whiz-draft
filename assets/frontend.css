@@ -330,8 +330,8 @@
 .radio-group input[type="radio"],
 .checkbox-group input[type="checkbox"] {
     appearance: none;
-    width: 18px;
-    height: 18px;
+    width: 50px;
+    height: 20px;
     border: 2px solid #bdc3c7;
     border-radius: 50%;
     position: relative;
@@ -503,7 +503,7 @@
 
 .checkbox-group input[type="checkbox"],
 .radio-group input[type="radio"] {
-    width: auto;
+    width: 20px;
     margin: 0;
 }
 

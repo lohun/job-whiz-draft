@@ -90,7 +90,7 @@ class FisibulInternshipPlugin
     public function activate()
     {
         $this->create_table();
-        
+
         // Set initial database version
         if (!get_option('fisibul_db_version')) {
             add_option('fisibul_db_version', FISIBUL_DB_VERSION);
@@ -219,249 +219,256 @@ class FisibulInternshipPlugin
     {
 ?>
         <div class="fisibul-form-container">
+            <div id="form-message" class="form-message" style="display: none;"></div>
             <form id="fisibul-internship-form" method="post">
                 <?php wp_nonce_field('fisibul_form_submit', 'fisibul_nonce'); ?>
-                <!-- Section 1: Personal Information -->
-                <div class="form-section">
-                    <h3>Section 1: Personal Information</h3>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="first_name">First Name *</label>
-                            <input type="text" id="first_name" name="first_name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="middle_name">Middle Name</label>
-                            <input type="text" id="middle_name" name="middle_name">
-                        </div>
-                        <div class="form-group">
-                            <label for="last_name">Last Name *</label>
-                            <input type="text" id="last_name" name="last_name" required>
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number (WhatsApp preferred) *</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="date_of_birth">Date of Birth *</label>
-                            <input type="date" id="date_of_birth" name="date_of_birth" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="address">Residential Address (City & State) *</label>
-                        <textarea id="address" name="address" rows="3" required></textarea>
+                <div class="form-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill"></div>
                     </div>
                 </div>
+                <div class="multi-step-form">
+                    <!-- Section 1: Personal Information -->
+                    <div data-step="1" class="form-section form-step active">
+                        <h3>Section 1: Personal Information</h3>
 
-                <!-- Section 2: Educational Background -->
-                <div class="form-section">
-                    <h3>Section 2: Educational Background</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="first_name">First Name *</label>
+                                <input type="text" id="first_name" name="first_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="middle_name">Middle Name</label>
+                                <input type="text" id="middle_name" name="middle_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name">Last Name *</label>
+                                <input type="text" id="last_name" name="last_name" required>
+                            </div>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="education_level">Highest Level of Education Completed *</label>
-                        <select id="education_level" name="education_level" required>
-                            <option value="">Select Education Level</option>
-                            <option value="secondary">Secondary School Certificate</option>
-                            <option value="diploma">Diploma / OND</option>
-                            <option value="undergraduate">Undergraduate (currently enrolled)</option>
-                            <option value="graduate">Graduate (BSc, HND, etc.)</option>
-                            <option value="postgraduate">Postgraduate</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number (WhatsApp preferred) *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="date_of_birth">Date of Birth *</label>
+                                <input type="date" id="date_of_birth" name="date_of_birth" required>
+                            </div>
+                        </div>
 
-                    <div class="form-group" id="education_other_group" style="display: none;">
-                        <label for="education_other">Please specify other education level</label>
-                        <input type="text" id="education_other" name="education_other">
-                    </div>
-
-                    <div class="form-row">
                         <div class="form-group">
-                            <label for="institution">Institution (Name of school/university) *</label>
-                            <input type="text" id="institution" name="institution" required>
+                            <label for="address">Residential Address (City & State) *</label>
+                            <textarea id="address" name="address" rows="3" required></textarea>
                         </div>
+                    </div>
+
+                    <!-- Section 2: Educational Background -->
+                    <div data-step="2" class="form-section form-step">
+                        <h3>Section 2: Educational Background</h3>
+
                         <div class="form-group">
-                            <label for="course_study">Course of Study / Discipline *</label>
-                            <input type="text" id="course_study" name="course_study" required>
+                            <label for="education_level">Highest Level of Education Completed *</label>
+                            <select id="education_level" name="education_level" required>
+                                <option value="">Select Education Level</option>
+                                <option value="secondary">Secondary School Certificate</option>
+                                <option value="diploma">Diploma / OND</option>
+                                <option value="undergraduate">Undergraduate (currently enrolled)</option>
+                                <option value="graduate">Graduate (BSc, HND, etc.)</option>
+                                <option value="postgraduate">Postgraduate</option>
+                                <option value="other">Other</option>
+                            </select>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Section 3: Eligibility & Motivation -->
-                <div class="form-section">
-                    <h3>Section 3: Eligibility & Motivation</h3>
-
-                    <div class="form-group">
-                        <label>Do you have a passion for content creation and digital skills development? *</label>
-                        <div class="radio-group">
-                            <label><input type="radio" name="passion_content" value="yes" required> Yes</label>
-                            <label><input type="radio" name="passion_content" value="no" required> No</label>
+                        <div class="form-group" id="education_other_group" style="display: none;">
+                            <label for="education_other">Please specify other education level</label>
+                            <input type="text" id="education_other" name="education_other">
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label for="interest_reason">Why are you interested in this internship program? *</label>
-                        <textarea id="interest_reason" name="interest_reason" rows="4" required></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="career_goals">What are your career goals, and how do you believe this program will help you achieve them? *</label>
-                        <textarea id="career_goals" name="career_goals" rows="4" required></textarea>
-                    </div>
-                </div>
-
-                <!-- Section 4: Track Selection & Skills -->
-                <div class="form-section">
-                    <h3>Section 4: Track Selection & Skills</h3>
-
-                    <div class="form-group">
-                        <label for="preferred_track">Most preferred Track *</label>
-                        <select id="preferred_track" name="preferred_track" required>
-                            <option value="">Select Track</option>
-                            <option value="writing">Writing</option>
-                            <option value="video_editing">Video Editing</option>
-                            <option value="graphics_design">Graphics Design</option>
-                            <option value="voiceovers">Voiceovers</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="experience_level">Experience level in most preferred track *</label>
-                        <select id="experience_level" name="experience_level" required>
-                            <option value="">Select Experience Level</option>
-                            <option value="novice">Novice</option>
-                            <option value="beginner">Beginner</option>
-                            <option value="intermediate">Intermediate</option>
-                            <option value="professional">Professional</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Which digital tools or software are you comfortable using? *</label>
-                        <div class="checkbox-group">
-                            <label><input type="checkbox" name="digital_tools[]" value="canva"> Canva</label>
-                            <label><input type="checkbox" name="digital_tools[]" value="coreldraw"> CorelDraw</label>
-                            <label><input type="checkbox" name="digital_tools[]" value="photoshop"> Photoshop</label>
-                            <label><input type="checkbox" name="digital_tools[]" value="illustrator"> Illustrator</label>
-                            <label><input type="checkbox" name="digital_tools[]" value="indesign"> InDesign</label>
-                            <label><input type="checkbox" name="digital_tools[]" value="figma"> Figma</label>
-                            <label><input type="checkbox" name="digital_tools[]" value="sketch"> Sketch</label>
-                            <label><input type="checkbox" name="digital_tools[]" value="premiere_pro"> Premiere Pro</label>
-                            <label><input type="checkbox" name="digital_tools[]" value="after_effects"> After Effects</label>
-                            <label><input type="checkbox" name="digital_tools[]" value="davinci_resolve"> DaVinci Resolve</label>
-                            <label><input type="checkbox" name="digital_tools[]" value="filmora"> Filmora</label>
-                            <label><input type="checkbox" name="digital_tools[]" value="final_cut_pro"> Final Cut Pro</label>
-                            <label><input type="checkbox" name="digital_tools[]" value="audacity"> Audacity</label>
-                            <label><input type="checkbox" name="digital_tools[]" value="other"> Other</label>
-                        </div>
-                        <input type="text" name="digital_tools_other" placeholder="Specify other tools" style="margin-top: 10px; display: none;" id="digital_tools_other">
-                    </div>
-                </div>
-
-                <!-- Section 5: Availability & Resources -->
-                <div class="form-section">
-                    <h3>Section 5: Availability & Resources</h3>
-
-                    <div class="form-group">
-                        <label>Do you have access to a personal laptop or desktop computer? *</label>
-                        <div class="radio-group">
-                            <label><input type="radio" name="access_computer" value="yes" required> Yes</label>
-                            <label><input type="radio" name="access_computer" value="no" required> No</label>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="institution">Institution (Name of school/university) *</label>
+                                <input type="text" id="institution" name="institution" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="course_study">Course of Study / Discipline *</label>
+                                <input type="text" id="course_study" name="course_study" required>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label>Do you have access to reliable internet? *</label>
-                        <div class="radio-group">
-                            <label><input type="radio" name="access_internet" value="yes" required> Yes</label>
-                            <label><input type="radio" name="access_internet" value="no" required> No</label>
+                    <!-- Section 3: Eligibility & Motivation -->
+                    <div data-step="3" class="form-section form-step">
+                        <h3>Section 3: Eligibility & Motivation</h3>
+
+                        <div class="form-group">
+                            <label>Do you have a passion for content creation and digital skills development? *</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="passion_content" value="yes" required> Yes</label>
+                                <label><input type="radio" name="passion_content" value="no" required> No</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="interest_reason">Why are you interested in this internship program? *</label>
+                            <textarea id="interest_reason" name="interest_reason" rows="4" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="career_goals">What are your career goals, and how do you believe this program will help you achieve them? *</label>
+                            <textarea id="career_goals" name="career_goals" rows="4" required></textarea>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="availability">Are you available to undertake the required 3-month internship schedule (10am–5pm, Mon–Fri, including host placements)? *</label>
-                        <select id="availability" name="availability" required>
-                            <option value="">Select Availability</option>
-                            <option value="yes">Yes</option>
-                            <option value="no">No</option>
-                            <option value="maybe">Maybe</option>
-                        </select>
-                    </div>
-                </div>
+                    <!-- Section 4: Track Selection & Skills -->
+                    <div data-step="4" class="form-section form-step">
+                        <h3>Section 4: Track Selection & Skills</h3>
 
-                <!-- Section 6: Portfolio & Experience -->
-                <div class="form-section">
-                    <h3>Section 6: Portfolio & Experience</h3>
+                        <div class="form-group">
+                            <label for="preferred_track">Most preferred Track *</label>
+                            <select id="preferred_track" name="preferred_track" required>
+                                <option value="">Select Track</option>
+                                <option value="writing">Writing</option>
+                                <option value="video_editing">Video Editing</option>
+                                <option value="graphics_design">Graphics Design</option>
+                                <option value="voiceovers">Voiceovers</option>
+                            </select>
+                        </div>
 
-                    <div class="form-group">
-                        <label>Do you have any previous work, projects, or samples to share?</label>
-                        <div class="radio-group">
-                            <label><input type="radio" name="has_portfolio" value="yes"> Yes</label>
-                            <label><input type="radio" name="has_portfolio" value="no"> No</label>
+                        <div class="form-group">
+                            <label for="experience_level">Experience level in most preferred track *</label>
+                            <select id="experience_level" name="experience_level" required>
+                                <option value="">Select Experience Level</option>
+                                <option value="novice">Novice</option>
+                                <option value="beginner">Beginner</option>
+                                <option value="intermediate">Intermediate</option>
+                                <option value="professional">Professional</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Which digital tools or software are you comfortable using? *</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="digital_tools[]" value="canva"> Canva</label>
+                                <label><input type="checkbox" name="digital_tools[]" value="coreldraw"> CorelDraw</label>
+                                <label><input type="checkbox" name="digital_tools[]" value="photoshop"> Photoshop</label>
+                                <label><input type="checkbox" name="digital_tools[]" value="illustrator"> Illustrator</label>
+                                <label><input type="checkbox" name="digital_tools[]" value="indesign"> InDesign</label>
+                                <label><input type="checkbox" name="digital_tools[]" value="figma"> Figma</label>
+                                <label><input type="checkbox" name="digital_tools[]" value="sketch"> Sketch</label>
+                                <label><input type="checkbox" name="digital_tools[]" value="premiere_pro"> Premiere Pro</label>
+                                <label><input type="checkbox" name="digital_tools[]" value="after_effects"> After Effects</label>
+                                <label><input type="checkbox" name="digital_tools[]" value="davinci_resolve"> DaVinci Resolve</label>
+                                <label><input type="checkbox" name="digital_tools[]" value="filmora"> Filmora</label>
+                                <label><input type="checkbox" name="digital_tools[]" value="final_cut_pro"> Final Cut Pro</label>
+                                <label><input type="checkbox" name="digital_tools[]" value="audacity"> Audacity</label>
+                                <label><input type="checkbox" name="digital_tools[]" value="other"> Other</label>
+                            </div>
+                            <input type="text" name="digital_tools_other" placeholder="Specify other tools" style="margin-top: 10px; display: none;" id="digital_tools_other">
                         </div>
                     </div>
 
-                    <div class="form-group" id="portfolio_link_group" style="display: none;">
-                        <label for="portfolio_link">If yes, please attach a link to your portfolio/Google Drive/online samples</label>
-                        <input type="url" id="portfolio_link" name="portfolio_link">
-                    </div>
+                    <!-- Section 5: Availability & Resources -->
+                    <div data-step="5" class="form-section form-step">
+                        <h3>Section 5: Availability & Resources</h3>
 
-                    <div class="form-group">
-                        <label for="previous_experience">Have you had any previous internship, freelance, or work experience in your chosen track?</label>
-                        <textarea id="previous_experience" name="previous_experience" rows="4"></textarea>
-                    </div>
-                </div>
+                        <div class="form-group">
+                            <label>Do you have access to a personal laptop or desktop computer? *</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="access_computer" value="yes" required> Yes</label>
+                                <label><input type="radio" name="access_computer" value="no" required> No</label>
+                            </div>
+                        </div>
 
-                <!-- Section 7: Commitment & Declaration -->
-                <div class="form-section">
-                    <h3>Section 7: Commitment & Declaration</h3>
+                        <div class="form-group">
+                            <label>Do you have access to reliable internet? *</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="access_internet" value="yes" required> Yes</label>
+                                <label><input type="radio" name="access_internet" value="no" required> No</label>
+                            </div>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="heard_about">How did you hear about this internship? *</label>
-                        <select id="heard_about" name="heard_about" required>
-                            <option value="">Select Option</option>
-                            <option value="website">Website</option>
-                            <option value="linkedin">LinkedIn</option>
-                            <option value="referral">Referral</option>
-                            <option value="social_media">Social Media (Facebook, Instagram, Twitter)</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group" id="heard_other_group" style="display: none;">
-                        <label for="heard_other">Please specify how you heard about this internship</label>
-                        <input type="text" id="heard_other" name="heard_other">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Declaration *</label>
-                        <div class="checkbox-group">
-                            <label><input type="checkbox" name="declaration_read" value="yes" required> I have read and understood the <strong>Program Handbook</strong> and <strong>Code of Conduct</strong>.</label>
-                            <label><input type="checkbox" name="declaration_commit" value="yes" required> I agree to commit fully to the internship program.</label>
+                        <div class="form-group">
+                            <label for="availability">Are you available to undertake the required 3-month internship schedule (10am–5pm, Mon–Fri, including host placements)? *</label>
+                            <select id="availability" name="availability" required>
+                                <option value="">Select Availability</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                                <option value="maybe">Maybe</option>
+                            </select>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="full_name_signature">Full Name (as Signature) *</label>
-                        <input type="text" id="full_name_signature" name="full_name_signature" required>
-                    </div>
-                </div>
+                    <!-- Section 6: Portfolio & Experience -->
+                    <div data-step="6" class="form-section form-step">
+                        <h3>Section 6: Portfolio & Experience</h3>
 
-                <div class="form-submit">
-                    <button type="submit" class="submit-btn">Submit Application</button>
-                    <div class="loading" style="display: none;">Submitting...</div>
+                        <div class="form-group">
+                            <label>Do you have any previous work, projects, or samples to share?</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="has_portfolio" value="yes"> Yes</label>
+                                <label><input type="radio" name="has_portfolio" value="no"> No</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="portfolio_link_group" style="display: none;">
+                            <label for="portfolio_link">If yes, please attach a link to your portfolio/Google Drive/online samples</label>
+                            <input type="url" id="portfolio_link" name="portfolio_link">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="previous_experience">Have you had any previous internship, freelance, or work experience in your chosen track?</label>
+                            <textarea id="previous_experience" name="previous_experience" rows="4"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Section 7: Commitment & Declaration -->
+                    <div data-step="7" class="form-section form-step">
+                        <h3>Section 7: Commitment & Declaration</h3>
+
+                        <div class="form-group">
+                            <label for="heard_about">How did you hear about this internship? *</label>
+                            <select id="heard_about" name="heard_about" required>
+                                <option value="">Select Option</option>
+                                <option value="website">Website</option>
+                                <option value="linkedin">LinkedIn</option>
+                                <option value="referral">Referral</option>
+                                <option value="social_media">Social Media (Facebook, Instagram, Twitter)</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" id="heard_other_group" style="display: none;">
+                            <label for="heard_other">Please specify how you heard about this internship</label>
+                            <input type="text" id="heard_other" name="heard_other">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Declaration *</label>
+                            <div class="checkbox-group">
+                                <label><input type="checkbox" name="declaration_read" value="yes" required> I have read and understood the <strong>Program Handbook</strong> and <strong>Code of Conduct</strong>.</label>
+                                <label><input type="checkbox" name="declaration_commit" value="yes" required> I agree to commit fully to the internship program.</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="full_name_signature">Full Name (as Signature) *</label>
+                            <input type="text" id="full_name_signature" name="full_name_signature" required>
+                        </div>
+                    </div>
+                    <div class="form-navigation">
+                        <button type="button" class="btn-prev">Previous Section</button>
+                        <button type="submit" class="btn-submit">Submit</button>
+                        <button type="button" class="btn-next">Next Section</button>
+                    </div>
                 </div>
             </form>
 
-            <div id="form-message" class="form-message" style="display: none;"></div>
         </div>
     <?php
     }

@@ -148,7 +148,7 @@ jQuery(document).ready(function ($) {
         // Age validation (minimum 16 years)
         const dob = new Date(stepElement.find('#date_of_birth').val());
         const today = new Date();
-        const age = today.getFullYear() - dob.getFullYear();
+        let age = today.getFullYear() - dob.getFullYear();
         const monthDiff = today.getMonth() - dob.getMonth();
 
         if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
@@ -279,16 +279,14 @@ jQuery(document).ready(function ($) {
 
     // Form submission
     $('#fisibul-internship-form').submit(function (e) {
-
-        $(this).validate();
-
+        e.preventDefault();
 
         // Final validation of all steps
-        // if (!validateAllSteps()) {
-        //     return;
-        // }
+        if (!validateAllSteps()) {
+            return;
+        }
 
-        const submitBtn = $('.submit-btn');
+        const submitBtn = $('.btn-submit');
         const loading = $('.loading');
 
         // Show loading state
@@ -309,7 +307,6 @@ jQuery(document).ready(function ($) {
             processData: false,
             contentType: false,
             success: function (response) {
-                console.log(response)
                 submitBtn.prop('disabled', false);
                 loading.hide();
 
